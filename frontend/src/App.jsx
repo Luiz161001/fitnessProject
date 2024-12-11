@@ -1,12 +1,12 @@
-import { useState } from 'react'
-import axios from 'axios';
+import { Routes, Route } from 'react-router-dom';
+import FirstPage from './pages/FirstPage';
 
 function App() {
   return (
-    <>
-      <h1>test</h1>
-    </>
+    <Routes>
+      <Route path='/' element={<FirstPage/>} />
+    </Routes>
   )
 }
 
-export default App
+export default App;

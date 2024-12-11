@@ -1,0 +1,38 @@
+.log-section{
+    min-height: 100vh;
+    background-color: aquamarine;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.log-box{
+    height: 80vh;
+    width: 30%;
+    background-color: rebeccapurple;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr;
+}
+
+.form-box{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: black;
+    gap: 20px;
+}
+
+.log-btns-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    flex-direction: column;
+    background-color: white;
+}
+
+.log-btns{
+    width: 25vh;
+}

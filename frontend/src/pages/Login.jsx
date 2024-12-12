@@ -11,7 +11,7 @@ const Login = () => {
                 </div>
                 <div className="log-options">
                     <form action="" className="log-form-box">
-                        <input type="text" placeholder="    Email address*" />
+                        <input type="text" placeholder="Email address*" />
                         <button>Continue</button>
                     </form>
 

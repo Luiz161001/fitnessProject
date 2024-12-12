@@ -14,8 +14,7 @@
     display: flex;
     flex-direction: column;
     border-radius: 5px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1), 
-                0 6px 20px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1), 0 6px 20px rgba(0, 0, 0, 0.1);
 }
 
 .log-text {
@@ -78,6 +77,8 @@
     width: 80%;
     height: 3em;
     border-radius: 9px;
+    box-sizing: border-box;
+    padding: 10px;
 }
 
 .log-options button {

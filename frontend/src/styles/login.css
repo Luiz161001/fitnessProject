@@ -1,38 +1,94 @@
-.log-section{
+.log-section {
     min-height: 100vh;
-    background-color: aquamarine;
     display: flex;
     align-items: center;
     justify-content: center;
+    /* background: rgb(150,109,249); */
+    background: radial-gradient(circle, rgba(151, 109, 249, 0.292) 0%, rgba(250,250,252,1) 100%);
 }
 
-.log-box{
-    height: 80vh;
-    width: 30%;
-    background-color: rebeccapurple;
-    display: grid;
-    grid-template-columns: 1fr;
-    grid-template-rows: 1fr 1fr;
+.log-box {
+    height: 670px;
+    width: 400px;
+    background-color: #F9F9F9;
+    display: flex;
+    flex-direction: column;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1), 
+                0 6px 20px rgba(0, 0, 0, 0.1);
 }
 
-.form-box{
+.log-text {
+    height: 30%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.log-text h1 {
+    margin: 0;
+}
+
+.log-options {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
-    background-color: black;
-    gap: 20px;
+    gap: 30px;
 }
 
-.log-btns-container{
+.log-form-box {
     display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 20px;
     flex-direction: column;
-    background-color: white;
+    align-items: center;
+    gap: 30px;
 }
 
-.log-btns{
-    width: 25vh;
+.log-btns-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+}
+
+.log-divider {
+    width: 80%;
+    display: flex;
+    align-items: center;
+    gap: .5em;
+    text-align: center;
+    color: rgb(32, 136, 227);
+}
+
+.log-divider::before,
+.log-divider::after {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background-color: rgb(32, 136, 227);
+}
+
+.log-form-box,
+.log-btns-container {
+    width: 100%;
+    height: 100%;
+}
+
+.log-options input {
+    width: 80%;
+    height: 3em;
+    border-radius: 9px;
+}
+
+.log-options button {
+    color: rgb(32, 136, 227);
+    width: 80%;
+    height: 3em;
+    border-radius: 5px;
+    border: none;
+}
+
+.log-options button:hover {
+    cursor: pointer;
+    background-color: rgb(196, 245, 255);
 }

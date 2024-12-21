@@ -12,6 +12,7 @@ const Login = () => {
                 <div className="log-options">
                     <form action="" className="log-form-box">
                         <input type="text" placeholder="Email address*" />
+                        <input type="password" placeholder="Password*" />
                         <button>Continue</button>
                     </form>
 

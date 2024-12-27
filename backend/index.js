@@ -1,6 +1,6 @@
 import express, { json } from "express";
 import cors from 'cors';
-import login from "./routes/login";
+import login from "./routes/login.js";
 
 const app = express();
 const port = 3000;

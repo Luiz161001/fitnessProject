@@ -3,17 +3,17 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background: #f5f0f9;
+    background: var(--main-background-color);
 }
 
 .log-box {
     height: 670px;
     width: 450px;
-    background-color: #F9F9F9;
+    background-color: var(--white-color);
     display: flex;
     flex-direction: column;
     border-radius: 5px;
-    box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1), 0 10px 30px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 10px 10px rgba(0, 0, 0, 0.2), 0 10px 30px rgba(0, 0, 0, 0.2);
 }
 
 .log-text {
@@ -55,7 +55,7 @@
     align-items: center;
     gap: .5em;
     text-align: center;
-    color: rgb(32, 136, 227);
+    color: var(--main-dark-color);
 }
 
 .log-divider::before,
@@ -63,7 +63,7 @@
     content: "";
     flex: 1;
     height: 1px;
-    background-color: rgb(32, 136, 227);
+    background-color: var(--main-color);
 }
 
 .log-form-box,
@@ -78,11 +78,11 @@
     border-radius: 9px;
     box-sizing: border-box;
     padding: 10px;
-    border: 1px solid rgb(32, 136, 227);
+    border: 1px solid var(--main-color);
 }
 
 .log-options button {
-    color: rgb(32, 136, 227);
+    color: var(--main-dark-color);
     width: 80%;
     height: 3em;
     border-radius: 5px;
@@ -91,5 +91,16 @@
 
 .log-options button:hover {
     cursor: pointer;
-    background-color: rgb(196, 245, 255);
+    background-color: var(--main-color-hover);
+}
+
+.logo {
+    width: 80px;
+}
+
+.log-btns {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
 }

@@ -1,3 +1,14 @@
+:root{
+    --main-background-color: #f7f7f7;
+
+    --main-color: #830ef8;
+    --main-dark-color: #1e0439;
+
+    --main-color-hover: #f1e3ff;
+
+    --white-color: #ffffff;
+}
+
 html, body {
     margin: 0;
 }

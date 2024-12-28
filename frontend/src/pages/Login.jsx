@@ -38,9 +38,21 @@ const Login = () => {
                         <span>OR</span>
                     </div>
 
-                    <div className="log-btns-container">
+                    {/* <div className="log-btns-container">
                         <button onClick={handleClick} className="log-btns" name="google-oauth">Login with Google</button>
                         <button onClick={handleClick} className="log-btns" name="facebook-oauth">Login with Facebook</button>
+                    </div> */}
+
+                    <div className="log-btns-container">
+                        <button className="log-btns" onClick={handleClick}>
+                            <span>Login with</span>
+                            <img className="logo" src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Google_2015_logo.svg/1200px-Google_2015_logo.svg.png" alt="google-logo" />
+                        </button>
+
+                        <button className="log-btns" onClick={handleClick}>
+                            <span>Login with</span>
+                            <img className="logo" src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/93/Facebook_logo_%282023%29.svg/2560px-Facebook_logo_%282023%29.svg.png" alt="google-logo" />
+                        </button>
                     </div>
                 </div>
             </div>

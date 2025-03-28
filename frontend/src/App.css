@@ -1,0 +1,17 @@
+:root{
+    --main-background-color: #f7f7f7;
+
+    --main-color: #830ef8;
+    --main-color-shadow: #830ef82e;
+    --main-color-dark: #1e0439;
+
+    --dark-color-black: #0000002b;
+
+    --main-color-hover: #f1e3ff;
+
+    --white-color: #ffffff;
+}
+
+html, body {
+    margin: 0;
+}

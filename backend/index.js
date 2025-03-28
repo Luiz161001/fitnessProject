@@ -2,6 +2,7 @@ import express, { json } from "express";
 import cors from 'cors';
 import login from "./routes/auth.js";
 import cookieParser from "cookie-parser";
+import session from "express-session";
 
 import mongoUtils from './utils/mongodb.js';
 const { closeMongodbConnection } = mongoUtils;
@@ -17,10 +18,18 @@ app.use(cors({
 app.use(express.json());
 app.use(express.urlencoded({ extended:true }));
 app.use(cookieParser());
+app.use(session({
+    secret: "yay",
+    resave: false,
+    saveUninitialized: false,
+    cookie: {
+        expires: 60 * 60 * 24 * 7
+    }
+}));
 
 app.use('/auth', login);
 
-const server = app.listen(PORT, ()=>{
+const server = app.listen(PORT, () => {
     console.log(`Listening on PORT: ${PORT}`);
 })
 

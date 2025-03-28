@@ -23,7 +23,7 @@ async function connectToMongoDB() {
 
             dbConnection = client.db('fitnessApp');
 
-            await dbConnection.collection("users").createIndex({ username: 1 }, { unique: true });
+            await dbConnection.collection("users").createIndex({ email: 1 }, { unique: true });
         } catch (err) {
             console.error(err);
             throw err;

@@ -1,5 +1,4 @@
 import express from "express";
-import session from "express-session";
 import bcrypt from "bcrypt";
 import mongoUtils from '../utils/mongodb.js';
 const { connectToMongoDB, closeMongodbConnection } = mongoUtils;
@@ -7,15 +6,6 @@ const { connectToMongoDB, closeMongodbConnection } = mongoUtils;
 const router = express.Router();
 
 const saltRounds = 10;
-
-router.use(session({
-    secret: "yay",
-    resave: false,
-    saveUninitialized: false,
-    cookie: {
-        expires: 60 * 60 * 24 * 7
-    }
-}));
 
 router.post("/register", async (req, res) => {
     const { firstName, lastName, email, password } = req.body;
@@ -50,6 +40,7 @@ router.post("/login", async (req, res) => {
         const collection = db.collection('users');
 
         const user = await collection.findOne({ email: email });
+        
         if (user) {
             const response = await bcrypt.compare(password, user.password);
 
@@ -79,31 +70,25 @@ router.post("/login", async (req, res) => {
     }
 });
 
-router.post("/login_with_google", async (req, res) => {
-    const { googleUser } = req.body;
+router.post("/login-with-google", async (req, res) => {
+    const { userData } = req.body;
     try {
-        const userData = {
-            firstName: googleUser.firstName,
-            lastName: googleUser.lastName,
-            email: googleUser.email
-        };
-
         const db = await connectToMongoDB();
         const collection = db.collection('users');
 
-        const user = await collection.findOne({ email: googleUser.email });
+        const user = await collection.findOne({ email: userData.email });
         if (!user) 
             await collection.insertOne(userData);
 
         req.session.email = userData.email;
-        res.json({ ok: true, userData });
+        res.json({ ok: true });
     } catch (err) {
         console.error(err);
         res.json({ ok: false, message: "Failed loading user data from the database." });
     }
 });
 
-router.get("/load_user", async (req, res) => {
+router.get("/load-user", async (req, res) => {
     try {
         const db = await connectToMongoDB();
         const collection = db.collection('users');
@@ -130,17 +115,12 @@ router.get("/load_user", async (req, res) => {
 
 router.post("/logout", async (req, res) => {
     try {
-        const user = await collection.findOne({ email: req.session.email });
         req.session.destroy((err) => {
             if (err) {
                 console.error(err);
                 return res.json({ ok: false });
             }
-
             res.clearCookie('connect.sid');
-            if (user.isOAuth)
-                return res.json({ ok: true, isOAuth: true });
-
             res.json({ ok: true });
         })
     } catch (err) {

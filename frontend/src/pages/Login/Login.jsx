@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
 import React from "react";
-import "../styles/login.css";
+import "../../styles/login.css";
 import { Link } from "react-router-dom";
-import { useAuth } from "../components/login/AuthContext";
+import { useAuth } from "../../context/AuthContext";
 
 const Login = () => {
     const [formData, setFormData] = useState({ email: "", password: "" });
@@ -15,15 +15,8 @@ const Login = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        auth.login();
+        auth.login(formData);
     };
-
-    const handleClick = (e) => {
-        if(e.currentTarget.name === "google"){
-            auth.login_with_google();
-        }
-    };
-
     return (
         <section className="log-section">
             <div className="log-box">
@@ -44,7 +37,7 @@ const Login = () => {
                     </div>
 
                     <div className="log-btns-container">
-                        <button className="log-btns" onClick={handleClick} name="google">
+                        <button className="log-btns" onClick={() => auth.login_with_google()} name="google">
                             <span>Login with</span>
                             <img className="logo" src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Google_2015_logo.svg/1200px-Google_2015_logo.svg.png" alt="google-logo" />
                         </button>

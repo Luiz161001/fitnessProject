@@ -1,9 +1,8 @@
-import { useAuth } from "../components/login/AuthContext";
+import { useAuth } from "../context/AuthContext";
 import "../styles/login.css";
 
 const Index = () => {
     const user = useAuth();
-
 
     return (
         <section>

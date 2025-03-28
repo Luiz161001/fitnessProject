@@ -1,10 +1,14 @@
-import { useContext, createContext, useState } from "react";
+import { useContext, createContext, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 const AuthContext = createContext();
 import axios from "axios";
 import { googleLogout, useGoogleLogin } from '@react-oauth/google';
 
 const apiUrl = import.meta.env.VITE_API_URL || "http://localhost:3000";
+
+/**
+ * the google oauth is not fully working
+ */
 
 const AuthProvider = ({ children }) => {
     const [ user, setUser ] = useState(null);
@@ -16,7 +20,7 @@ const AuthProvider = ({ children }) => {
             const res = await axios.post(`${apiUrl}/auth/register`, {
                 firstName: formData.firstName,
                 lastName: formData.lastName,
-                username: formData.username,
+                email: formData.email,
                 password: formData.password
             }, { withCredentials: true });
 
@@ -42,7 +46,7 @@ const AuthProvider = ({ children }) => {
             }, { withCredentials: true });
     
             if(res.data.ok){
-                setUser(formData);
+                setUser(res.data.userData);
                 setLoading(false);
                 return navigate("/a");
             }
@@ -64,7 +68,21 @@ const AuthProvider = ({ children }) => {
                     },
                     withCredentials: false
                 });
-                // pass the information to the backend
+                const userData = {
+                    firstName: userInfo.data.given_name,
+                    lastName: userInfo.data.family_name,
+                    email: userInfo.data.email,
+                    isOauth: true
+                };
+
+                const res = await axios.post(`${apiUrl}/auth/login-with-google`, {
+                    userData
+                }, { withCredentials: true });
+                if(res.ok){
+                    setUser(userData);
+                    setLoading(false);
+                    return navigate("/a");
+                }
             }
             catch(err){
                 console.error(err);
@@ -73,22 +91,27 @@ const AuthProvider = ({ children }) => {
         onError: (err) => console.log(`Login failed: ${err}`)
     });
 
-    const login_with_facebook = () => {
+    const load_user = async () => {
+        try{
+            const res = await axios.get(`${apiUrl}/auth/load-user`, { withCredentials: true });
+    
+            if(res.data.ok){
+                setUser(res.data.userData);
+                setLoading(false);
+                return navigate("/a");
+            }
 
-    };
+            return alert(res.data.message);
 
-    const load_user = () => {
-
+        }catch(err){
+        }
     };
     
     const logout = async () => {
         const res = await axios.post(`${apiUrl}/auth/logout`, {}, { withCredentials: true });
-
-        // googleLogout();
-
         if(res.data.ok){
             // check oauth and use logout function
-
+            if(user.isOauth) googleLogout();
             setUser(null);
             setLoading(true);
             return navigate("/");
@@ -97,6 +120,10 @@ const AuthProvider = ({ children }) => {
         alert("Failed to logout, please try again!");
         navigate(0);
     };
+
+    useEffect(() => {
+        load_user();
+    }, []);
 
     return (
         <AuthContext.Provider value={{user, loading, register, login, login_with_google, logout}}>

@@ -1,5 +1,5 @@
 import { Navigate, Outlet, Link } from "react-router-dom";
-import { useAuth } from "./AuthContext";
+import { useAuth } from "../../context/AuthContext";
 
 const PrivateRoute = () => {
     const { user, loading } = useAuth();
@@ -7,8 +7,9 @@ const PrivateRoute = () => {
     if(loading){
         return (
             <div className="loading-page">
-                <p>We are loading your data :)</p>
-                <p>If you are not logged in yet, please login <Link to="/">here</Link></p>
+                <div className="load-animation"></div>
+                <p>Loading</p>
+                <p>Not logged in yet? Please login <a href="/">here</a>!</p>
             </div>
         )
     }

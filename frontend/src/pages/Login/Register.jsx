@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import "../styles/login.css";
+import "../../styles/login.css";
 import { Link } from "react-router-dom";
-import { useAuth } from "../components/login/AuthContext";
+import { useAuth } from "../../context/AuthContext";
 
 
 const Register = () => {
